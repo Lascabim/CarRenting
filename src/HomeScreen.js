@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Image, TextInput, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Image, TextInput, ScrollView, TouchableOpacity} from 'react-native';
 
 const menu = require("./assets/icons/menuu.png");
 const face = require('./assets/face.png');
@@ -12,7 +12,7 @@ const image_v_4 = require('./assets/vehicles/v-4.png');
 
 import data from "./dataset/vehicles.json";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const [ vehicles, setVehicles] = useState(data.vehicles);
   const [ filteredVehicles, setFilteredVehicles] = useState(data.vehicles);
 
@@ -78,7 +78,12 @@ const HomeScreen = () => {
             {
               filteredVehicles.map(vehicle => {
                 return (
-                  <View style={styles.element} key={vehicle.id}>
+                  <TouchableOpacity 
+                    style={styles.element} 
+                    key={vehicle.id} 
+                    activeOpacity={0.8} 
+                    onPress={() => navigation.navigate('Info', { id: vehicle.id })}
+                  >
                     <View style={styles.infoArea}>
                       <Text style={styles.infoTitle}>{vehicle.make} {vehicle.model}</Text>
                       <Text style={styles.infoSub}>{vehicle.type}-{vehicle.transmission}</Text>
@@ -90,7 +95,7 @@ const HomeScreen = () => {
                     <View style={styles.imageArea}>
                       <Image source={getImage(vehicle.id)} resizeMode="contain" style={styles.vehicleImage}/>
                     </View>
-                  </View>
+                  </TouchableOpacity>
                 )
               })
             }

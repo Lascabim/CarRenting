@@ -11,9 +11,6 @@ import HomeScreen from './src/HomeScreen';
 import MapScreen from './src/MapScreen';
 import SavedScreen from './src/SavedScreen';
 import SettingsScreen from './src/SettingsScreen';
-
-// SUB-SCREENS
-
 import InfoScreen from './src/InfoScreen';
 
 // ICONS
@@ -83,7 +80,7 @@ export default function App() {
           }
         })}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Home" component={HomeStack} />
         <Tab.Screen name="Map" component={MapScreen} />
         <Tab.Screen name="Saved" component={SavedScreen} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
